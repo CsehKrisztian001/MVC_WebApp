@@ -1,3 +1,6 @@
+using MVC_Bll.Services;
+using MVC_Dll;
+
 namespace MVC_WebApp
 {
     public class Program
@@ -7,8 +10,10 @@ namespace MVC_WebApp
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddScoped<MVCDbContext>();
+            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddControllersWithViews();
-
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
